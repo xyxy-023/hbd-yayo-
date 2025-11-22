@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, my yayo!</title>
+<title>Birthday Game Gift</title>
 <style>
 /* ---------- Cute Animated Gradient Background ---------- */
 body {
@@ -71,7 +72,6 @@ body {
   animation: bounce 1.2s infinite alternate, wiggle 2s infinite ease-in-out;
 }
 
-/* Eyes */
 #player::before, #player::after {
   content: '';
   width: 10px;
@@ -85,7 +85,6 @@ body {
 #player::before { left: 15px; }
 #player::after { right: 15px; }
 
-/* Smile */
 #player .smile {
   position: absolute;
   bottom: 15px;
@@ -96,31 +95,10 @@ body {
   animation: smileWiggle 2s infinite ease-in-out;
 }
 
-/* Player Bounce & Wiggle */
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-@keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(2deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
-}
-
-/* Blink Eyes */
-@keyframes blink {
-  0%, 90%, 100% { transform: scaleY(1); }
-  92%, 96% { transform: scaleY(0.1); }
-}
-
-/* Smile Wiggle */
-@keyframes smileWiggle {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(3deg); }
-}
+@keyframes bounce { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+@keyframes wiggle { 0% { transform: rotate(0deg); } 25% { transform: rotate(2deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-2deg); } 100% { transform: rotate(0deg); } }
+@keyframes blink { 0%,90%,100% { transform: scaleY(1); } 92%,96% { transform: scaleY(0.1); } }
+@keyframes smileWiggle { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
 
 /* ---------- Hearts ---------- */
 .heart {
@@ -132,17 +110,8 @@ body {
   animation: pulse 1s infinite ease-in-out, rotateHeart 4s linear infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-@keyframes rotateHeart {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(10deg); }
-  100% { transform: rotate(0deg); }
-}
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes rotateHeart { 0% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } 100% { transform: rotate(0deg); } }
 
 /* ---------- UI ---------- */
 #messageBox {
@@ -160,12 +129,8 @@ body {
   animation: fadeIn 1s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Sparkles */
 .sparkle {
   position: absolute;
   width: 8px;
@@ -176,12 +141,8 @@ body {
   animation: sparklePop 0.6s ease-out forwards;
   pointer-events: none;
 }
-@keyframes sparklePop {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(1.8); opacity: 0; }
-}
+@keyframes sparklePop { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
 
-/* Confetti */
 .confetti {
   position: absolute;
   width: 8px;
@@ -190,27 +151,15 @@ body {
   transform: rotate(0deg);
   animation: fall 2s linear forwards;
 }
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
-}
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity:1; } 100% { transform: translateY(600px) rotate(360deg); opacity:0; } }
 
-/* Score */
-#score {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ff4d88;
-}
+#score { position: fixed; top: 15px; left: 15px; font-size: 18px; font-weight: bold; color: #ff4d88; }
 
-/* Play Again Button */
 #playAgain {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
   background: #ffb6d6;
   color: #fff;
   font-size: 22px;
@@ -223,10 +172,7 @@ body {
   display: none;
   animation: pop 0.5s ease-out infinite alternate;
 }
-@keyframes pop {
-  0% { transform: translate(-50%, -50%) scale(0.9); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
+@keyframes pop { 0% { transform: translate(-50%,-50%) scale(0.9); } 100% { transform: translate(-50%,-50%) scale(1); } }
 #playAgain:hover { background: #ff92c1; }
 </style>
 </head>
@@ -234,6 +180,9 @@ body {
 
 <audio id="bgm" autoplay loop>
   <source src="wishlist.mp3" type="audio/mpeg">
+</audio>
+<audio id="popSound">
+  <source src="pop.mp3" type="audio/mpeg">
 </audio>
 
 <div id="player"><div class="smile"></div></div>
@@ -245,142 +194,127 @@ body {
 /* ---------- Background sparkles & hearts ---------- */
 function spawnBackgroundDecor() {
   for(let i=0;i<30;i++){
-    let s = document.createElement("div");
-    s.className = "bgSparkle";
-    s.style.left = Math.random()*window.innerWidth + "px";
-    s.style.top = Math.random()*window.innerHeight + "px";
-    s.style.animationDuration = 4 + Math.random()*4 + "s";
+    let s=document.createElement("div");
+    s.className="bgSparkle";
+    s.style.left=Math.random()*window.innerWidth+"px";
+    s.style.top=Math.random()*window.innerHeight+"px";
+    s.style.animationDuration=4+Math.random()*4+"s";
     document.body.appendChild(s);
   }
   for(let i=0;i<20;i++){
-    let h = document.createElement("div");
-    h.className = "bgHeart";
-    h.style.left = Math.random()*window.innerWidth + "px";
-    h.style.top = Math.random()*window.innerHeight + "px";
-    h.style.animationDuration = 6 + Math.random()*6 + "s";
+    let h=document.createElement("div");
+    h.className="bgHeart";
+    h.style.left=Math.random()*window.innerWidth+"px";
+    h.style.top=Math.random()*window.innerHeight+"px";
+    h.style.animationDuration=6+Math.random()*6+"s";
     document.body.appendChild(h);
   }
 }
 spawnBackgroundDecor();
 
 /* ---------- Game Variables ---------- */
-let messages = [
-  "Happy Birthday, my yayo ❤️",
-  "I made this little game just for you.",
-  "Thank you for being the brightest part of my life.",
-  "I hope you like it po yessuh"
-];
-let msgIndex = 0;
-let score = 0;
-const player = document.getElementById("player");
-let x = 80, y = 80;
-let speed = 6;
-let heartsCount = 6;
+let messages=["Happy Birthday, my yayo ❤️","I made this little game just for you.","Ayeee nice one, baby! One more po!","GOOD JOOBBB anyway I hope you like it po yessuh"];
+let msgIndex=0, score=0;
+const player=document.getElementById("player");
+let x=80, y=80, speed=6, heartsCount=6;
 
 /* ---------- Create Hearts ---------- */
-function createHearts(count = heartsCount) {
-  for (let i = 0; i < count; i++) {
-    let h = document.createElement("div");
+function createHearts(count=heartsCount){
+  for(let i=0;i<count;i++){
+    let h=document.createElement("div");
     h.classList.add("heart");
-    h.style.left = Math.random() * (window.innerWidth - 50) + "px";
-    h.style.top = Math.random() * (window.innerHeight - 50) + "px";
-    h.dataset.vx = (Math.random()*2-1) * 2;
-    h.dataset.vy = (Math.random()*2-1) * 2;
+    h.style.left=Math.random()*(window.innerWidth-50)+"px";
+    h.style.top=Math.random()*(window.innerHeight-50)+"px";
+    h.dataset.vx=(Math.random()*2-1)*2;
+    h.dataset.vy=(Math.random()*2-1)*2;
     document.body.appendChild(h);
   }
 }
 createHearts();
 
 /* ---------- Player Movement ---------- */
-let keys = {};
-document.addEventListener("keydown", e => { keys[e.key] = true; });
-document.addEventListener("keyup", e => { keys[e.key] = false; });
+let keys={};
+document.addEventListener("keydown",e=>{keys[e.key]=true;});
+document.addEventListener("keyup",e=>{keys[e.key]=false;});
 
-function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
 
-function movePlayer() {
-  if(keys["ArrowUp"] || keys["w"]) y -= speed;
-  if(keys["ArrowDown"] || keys["s"]) y += speed;
-  if(keys["ArrowLeft"] || keys["a"]) x -= speed;
-  if(keys["ArrowRight"] || keys["d"]) x += speed;
+function movePlayer(){
+  if(keys["ArrowUp"]||keys["w"]) y-=speed;
+  if(keys["ArrowDown"]||keys["s"]) y+=speed;
+  if(keys["ArrowLeft"]||keys["a"]) x-=speed;
+  if(keys["ArrowRight"]||keys["d"]) x+=speed;
 
-  x = clamp(x, 0, window.innerWidth - 64);
-  y = clamp(y, 0, window.innerHeight - 64);
+  x=clamp(x,0,window.innerWidth-64);
+  y=clamp(y,0,window.innerHeight-64);
 
-  player.style.left = x + "px";
-  player.style.top = y + "px";
+  player.style.left=x+"px";
+  player.style.top=y+"px";
 
   moveHearts();
   checkCollision();
-  createTrail(); // cute trail behind player
+  createTrail();
   requestAnimationFrame(movePlayer);
 }
 
 /* ---------- Heart Movement ---------- */
-function moveHearts() {
-  const hearts = document.querySelectorAll(".heart");
-  hearts.forEach(h => {
-    let left = parseFloat(h.style.left) + parseFloat(h.dataset.vx);
-    let top = parseFloat(h.style.top) + parseFloat(h.dataset.vy);
-    if(left <= 0 || left >= window.innerWidth-28) h.dataset.vx *= -1;
-    if(top <= 0 || top >= window.innerHeight-28) h.dataset.vy *= -1;
-    h.style.left = (parseFloat(h.style.left) + parseFloat(h.dataset.vx)) + "px";
-    h.style.top = (parseFloat(h.style.top) + parseFloat(h.dataset.vy)) + "px";
+function moveHearts(){
+  document.querySelectorAll(".heart").forEach(h=>{
+    let left=parseFloat(h.style.left)+parseFloat(h.dataset.vx);
+    let top=parseFloat(h.style.top)+parseFloat(h.dataset.vy);
+    if(left<=0||left>=window.innerWidth-28) h.dataset.vx*=-1;
+    if(top<=0||top>=window.innerHeight-28) h.dataset.vy*=-1;
+    h.style.left=(parseFloat(h.style.left)+parseFloat(h.dataset.vx))+"px";
+    h.style.top=(parseFloat(h.style.top)+parseFloat(h.dataset.vy))+"px";
   });
 }
 
 /* ---------- Collision Detection ---------- */
-function checkCollision() {
-  const hearts = document.querySelectorAll(".heart");
-  hearts.forEach(h => {
-    const rect1 = player.getBoundingClientRect();
-    const rect2 = h.getBoundingClientRect();
-    if (!(rect1.right < rect2.left ||
-          rect1.left > rect2.right ||
-          rect1.bottom < rect2.top ||
-          rect1.top > rect2.bottom)) {
-      createSparkle(rect2.left, rect2.top);
+function checkCollision(){
+  document.querySelectorAll(".heart").forEach(h=>{
+    const rect1=player.getBoundingClientRect();
+    const rect2=h.getBoundingClientRect();
+    if(!(rect1.right<rect2.left||rect1.left>rect2.right||rect1.bottom<rect2.top||rect1.top>rect2.bottom)){
+      createSparkle(rect2.left,rect2.top);
       document.getElementById("popSound").play();
       h.remove();
       score++;
-      document.getElementById("score").textContent = `Hearts: ${score}`;
+      document.getElementById("score").textContent=`Hearts: ${score}`;
       revealMessage();
-      if(score === heartsCount) showConfettiAndPlayAgain();
+      if(score===heartsCount) showConfettiAndPlayAgain();
     }
   });
 }
 
 /* ---------- Sparkles ---------- */
-function createSparkle(px, py) {
+function createSparkle(px,py){
   for(let i=0;i<6;i++){
-    let s = document.createElement("div");
+    let s=document.createElement("div");
     s.className="sparkle";
-    s.style.left = px + (Math.random()*20-10) + "px";
-    s.style.top = py + (Math.random()*20-10) + "px";
+    s.style.left=px+(Math.random()*20-10)+"px";
+    s.style.top=py+(Math.random()*20-10)+"px";
     document.body.appendChild(s);
     setTimeout(()=>s.remove(),600);
   }
 }
 
 /* ---------- Player Trail ---------- */
-function createTrail() {
-  let t = document.createElement("div");
-  t.className = "sparkle";
-  t.style.left = x + 28 + "px";
-  t.style.top = y + 28 + "px";
+function createTrail(){
+  let t=document.createElement("div");
+  t.className="sparkle";
+  t.style.left=x+28+"px";
+  t.style.top=y+28+"px";
   document.body.appendChild(t);
   setTimeout(()=>t.remove(),500);
 }
 
 /* ---------- Messages ---------- */
 function revealMessage(){
-  const box = document.getElementById("messageBox");
-  if(msgIndex < messages.length){
-    box.textContent = messages[msgIndex];
-    msgIndex++;
-  } else {
-    box.innerHTML = `
-      <strong>💌:</strong><br><br>
+  const box=document.getElementById("messageBox");
+  if(msgIndex<messages.length){box.textContent=messages[msgIndex]; msgIndex++;}
+  else{
+    box.innerHTML=` 
+<strong>💌:</strong><br><br>
       Dear yayo,<br><br>
       Happy birthday, my #1. Today's not only another year to thank Him for your life but another year to celebrate it.
       I pray that God shines His grace upon you po lalo as you shine every room that you walk into. I am endlessly grateful for you — for the laughter,
@@ -391,31 +325,30 @@ function revealMessage(){
       I hope you feel loved today, because you are. Every single day. Especially by Riley and I ! :D 
       I pray that you get what you want as you deserve what you want, baby. <br><br>
       Love, xyxy. ❤️
-    `;
+`;
   }
 }
 
 /* ---------- Confetti & Play Again ---------- */
-function showConfettiAndPlayAgain() {
+function showConfettiAndPlayAgain(){
   for(let i=0;i<150;i++){
-    let c = document.createElement("div");
-    c.className = "confetti";
-    c.style.background = `hsl(${Math.random()*360}, 80%, 65%)`;
-    c.style.left = Math.random()*window.innerWidth + "px";
-    c.style.top = Math.random()*-200 + "px";
-    c.style.animationDuration = 2 + Math.random()*2 + "s";
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.background=`hsl(${Math.random()*360},80%,65%)`;
+    c.style.left=Math.random()*window.innerWidth+"px";
+    c.style.top=Math.random()*-200+"px";
+    c.style.animationDuration=2+Math.random()*2+"s";
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),4000);
   }
-  document.getElementById("playAgain").style.display = "block";
+  document.getElementById("playAgain").style.display="block";
 }
 
 document.getElementById("playAgain").addEventListener("click",()=>{
-  score=0;
-  msgIndex=0;
-  document.getElementById("score").textContent = `Hearts: 0`;
-  document.getElementById("messageBox").textContent = "Collect all the hearts 💖";
-  document.getElementById("playAgain").style.display = "none";
+  score=0; msgIndex=0;
+  document.getElementById("score").textContent="Hearts: 0";
+  document.getElementById("messageBox").textContent="Collect all the hearts 💖";
+  document.getElementById("playAgain").style.display="none";
   document.querySelectorAll(".heart").forEach(h=>h.remove());
   createHearts();
 });
@@ -423,6 +356,5 @@ document.getElementById("playAgain").addEventListener("click",()=>{
 /* ---------- Start Game ---------- */
 movePlayer();
 </script>
-
 </body>
 </html>
